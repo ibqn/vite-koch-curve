@@ -1,4 +1,5 @@
 import { type Dispatch, type SetStateAction } from 'react'
+import { PlusIcon, MinusIcon } from '@radix-ui/react-icons'
 
 type Props = {
   level: number
@@ -18,19 +19,21 @@ export const LevelController = ({ level, setLevel }: Props) => {
   }
 
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row items-center gap-2">
       <button
-        className="py1 cursor-pointer rounded-md bg-slate-100 px-4 hover:bg-slate-300"
+        className="cursor-pointer rounded-md bg-slate-400 px-4 py-1 hover:bg-slate-500 disabled:cursor-not-allowed disabled:bg-slate-100"
+        disabled={MIN_LEVEL >= level}
         onClick={decreaseLevel}
       >
-        -
+        <MinusIcon />
       </button>
-      <span>{level}</span>
+      <div className="w-4 text-center">{level}</div>
       <button
-        className="py1 cursor-pointer rounded-md bg-slate-100 px-4 hover:bg-slate-300"
+        className="cursor-pointer rounded-md bg-slate-300 px-4 py-1 hover:bg-slate-500 disabled:cursor-not-allowed disabled:bg-slate-100"
+        disabled={MAX_LEVEL <= level}
         onClick={increaseLevel}
       >
-        +
+        <PlusIcon />
       </button>
     </div>
   )
